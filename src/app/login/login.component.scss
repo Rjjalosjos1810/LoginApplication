@@ -1,0 +1,21 @@
+@import 'helpers';
+
+.login-page {
+   
+    @include bg-image($uri: '/assets/images/background.jpg', $size: cover, $position: center);
+    @include flex($dir: column, $ai: center, $jc: center);
+
+    height: 100vh;
+
+    &__logo {
+        width: 170px;
+        margin-bottom: 1rem;
+        
+    }
+
+    &__username {
+        color: var(--mac-grey);
+        text-shadow: 1px 1px var(--dark-0);
+        margin-bottom: 1rem;
+    }
+} 

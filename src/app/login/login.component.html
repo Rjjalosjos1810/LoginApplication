@@ -1,0 +1,24 @@
+<div class ="login-page">
+  <img src="assets/images/logo.png" 
+    alt="logo" 
+    class="login-page__logo">
+
+    <br>
+    <span class="p-float-label">
+      <input id="float-input" type="text" [(ngModel)]= "username" pInputText placeholder="Username"> 
+      <label for="float-input">Username</label>
+    </span>
+
+    <br>
+
+    <span class="p-float-label">
+      <input id="float-pass" type="password" [(ngModel)]= "password"  pInputText placeholder="Password"> 
+      <label for="float-pass" type=>Password</label>
+    </span>
+
+    <br>
+    <p-button pRipple type="button" (onClick)="onClick()" label="Login" class="p-button-raised"></p-button>
+
+
+
+</div>
