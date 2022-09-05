@@ -21,6 +21,8 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DropdownModule} from 'primeng/dropdown';
 
+import {SidebarModule} from 'primeng/sidebar';
+
 
 @NgModule({
   declarations: [			
@@ -43,7 +45,8 @@ import {DropdownModule} from 'primeng/dropdown';
     HttpClientModule,
     FileUploadModule,
     BrowserAnimationsModule,
-    DropdownModule
+    DropdownModule,
+    SidebarModule
 
   ],
   providers: [CustomerService],
