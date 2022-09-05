@@ -1,78 +1,71 @@
 <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
 
-<div class="pl-5 pt-4 ">
+<p-sidebar [(visible)]="displayInsert">
+  
   <h5>Lead Information</h5>
-  <br />
-  <div class="grid">
-    <div class="col-md flex align-items-center">
-      <div class="p-fluid">
-        <div class="field">
-          <label for="firstname">First Name</label>
-          <input pInputText id="firstname" type="text" placeholder="Juan"/>
-        </div>
+  <form novalidate>
+    <div class="p-fluid">
+      <div class="field">
+        <label for="firstname">First Name</label>
+        <input pInputText id="firstname" type="text" placeholder="Juan" />
+      </div>
 
-        <div class="field">
-          <label for="lastname">Last Name</label>
-          <input pInputText id="lastname" type="text" placeholder="Dela Cruz"/>
-        </div>
+      <div class="field">
+        <label for="lastname">Last Name</label>
+        <input pInputText id="lastname" type="text" placeholder="Dela Cruz" />
+      </div>
 
-        <div class="field">
-          <label for="country">Country</label>
-          <input pInputText id="country" type="text" placeholder="Philippines"/>
-        </div>
+      <div class="field">
+        <label for="country">Country</label>
+        <input pInputText id="country" type="text" placeholder="Philippines" />
+      </div>
 
-        <div class="field">
-          <label for="nationality">Nationality</label>
-          <input pInputText id="nationality" type="text" placeholder="Filipino"/>
-        </div>
+      <div class="field">
+        <label for="nationality">Nationality</label>
+        <input pInputText id="nationality" type="text" placeholder="Filipino" />
+      </div>
 
-        <div class="field">
-          <label for="company">Company</label>
-          <input pInputText id="company" type="text" placeholder="Titus Global-Tech"/>
-        </div>
+      <div class="field">
+        <label for="company">Company</label>
+        <input pInputText id="company" type="text" placeholder="Titus Global-Tech" />
+      </div>
 
-        <div class="field">
-          <label for="designation">Designation</label>
-          <input pInputText id="designation" type="text" placeholder="CEO"/>
-        </div>
+      <div class="field">
+        <label for="designation">Designation</label>
+        <input pInputText id="designation" type="text" placeholder="CEO" />
+      </div>
 
-        <div class="field">
-          <label for="cv">CV</label>
-          <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" [auto]="true" chooseLabel="Upload File" id="cv"></p-fileUpload>
+      <div class="field">
+        <label for="cv">CV</label>
+        <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" [auto]="true"
+          chooseLabel="Upload File" id="cv"></p-fileUpload>
 
-        </div>
+      </div>
 
-        <div class="field">
-          <label for="datasource">Data Source</label>
-          <p-dropdown [options]="socials" [(ngModel)]="selectedSocials" optionLabel="name"></p-dropdown>
-        </div>
+      <div class="field">
+        <label for="datasource">Data Source</label>
+        <p-dropdown [options]="socials" [(ngModel)]="selectedSocials" optionLabel="name"></p-dropdown>
+      </div>
 
-        <div btn-group>
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Insert"
-            style="width: 50%"
-            class="p-button-rounded"
-          ></button>
-          <button
-            pButton
-            pRipple
-            type="button"
-            label="Clear"
-            style="width: 50%"
-            class="p-button-rounded p-button-danger"
-          ></button>
-        </div>
+      <div btn-group>
+        <button pButton pRipple type="button" label="Insert" style="width: 50%" class="p-button-rounded"></button>
+        <button pButton pRipple type="button" label="Clear" style="width: 50%"
+          class="p-button-rounded p-button-danger"></button>
       </div>
     </div>
 
+
+  </form>
+</p-sidebar>
+
+<div class="pl-3 pt-2 ">
+  <br />
+  <div class="grid">
     <!-------------------------------------------------->
     <!-- <div class="col-"></div> -->
 
-    <p-divider layout="vertical">
-      <br>
+    <p-divider layout="vertical" class="h-screen">
+      <br>  
       <p>T</p>
       <br />
       <p>I</p>
@@ -94,52 +87,33 @@
 
     <div class="card">
       <h5>Duplicate List</h5>
-      <p-table
-          [value]="customers"
-          [paginator]="true"
-          [rows]="10"
-          [showCurrentPageReport]="true"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-          [rowsPerPageOptions]="[10, 25, 50]"
-        >
-          <ng-template pTemplate="header">
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Country</th>
-              <th>Nationality</th>
-              <th>Designation</th>
-              <th>Work Experience</th>
-              <th>CV</th>
-              <th>Data Source</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-customer>
-            <tr>
-              <td>{{customer.firstname}}</td>
-              <td>{{customer.lastname}}</td>
-              <td>{{customer.country}}</td>
-              <td>{{customer.nationality }}</td>
-              <td>{{customer.designation}}</td>
-              <td>{{customer.workexperience}}</td>
-              <td><a routerLink="/dashboard" class = "cv">Download CV</a></td>
-              <td>{{customer.datasource}}</td>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="paginatorleft">
-            <p-button
-              type="button"
-              icon="pi pi-plus"
-              styleClass="p-button-text"
-            ></p-button>
-          </ng-template>
-          <ng-template pTemplate="paginatorright">
-            <p-button
-              type="button"
-              icon="pi pi-cloud"
-              styleClass="p-button-text"
-            ></p-button>
-          </ng-template>
+      <p-table [value]="customers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Country</th>
+            <th>Nationality</th>
+            <th>Designation</th>
+            <th>Work Experience</th>
+            <th>CV</th>
+            <th>Data Source</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-customer>
+          <tr>
+            <td>{{customer.firstname}}</td>
+            <td>{{customer.lastname}}</td>
+            <td>{{customer.country}}</td>
+            <td>{{customer.nationality }}</td>
+            <td>{{customer.designation}}</td>
+            <td>{{customer.workexperience}}</td>
+            <td><a routerLink="/dashboard" class="cv">View</a></td>
+            <td>{{customer.datasource}}</td>
+          </tr>
+        </ng-template>
       </p-table>
     </div>
   </div>
