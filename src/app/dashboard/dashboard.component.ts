@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 
 import { Customer } from '../customer';
@@ -16,6 +17,7 @@ interface social {
   styleUrls: ['./dashboard.component.scss'],
 })
 
+
 export class DashboardComponent implements OnInit {
   items: MenuItem[] = [];
   values1: string | undefined;
@@ -26,10 +28,29 @@ export class DashboardComponent implements OnInit {
   socials: social[] = [];
   selectedSocials: social | undefined;
 
+  //form related variables
+  insertFormGroup!: FormGroup;
+  firstname!: FormControl;
+  lastname!: FormControl
+  country!: FormControl;
+  nationality!: FormControl;
+  company!: FormControl;
+  designation!: FormControl;
+  workexperience!: FormControl;
+  displayInsert!: boolean;
 
     first = 0;
 
     rows = 10;
+
+    // profileForm = this.formBuilder.group( {
+    //   firstname: ['', Validators.required],
+    //   lastname: ['',  Validators.required],
+    //   country: ['', Validators.required],
+    //   nationality: ['', Validators.required],
+    //   company: ['', Validators.required],
+    //   designation: ['', Validators.required],
+    // })
   
   constructor(private customerService: CustomerService) { }
 
@@ -38,7 +59,9 @@ export class DashboardComponent implements OnInit {
 
     this.items = [
       {label: 'Titus GT', icon: 'pi pi-fw pi-prime'},
-      {label: 'Insert Page', icon: 'pi pi-fw pi-plus'},
+      {label: 'Insert Page', icon: 'pi pi-fw pi-plus', command: () => {
+        this.displayInsert = true;
+      }},
       {label: 'Update Page', icon: 'pi pi-fw pi-pencil'},
       {label: 'Quit', icon: 'pi pi-fw pi-power-off'},    
     ];
@@ -49,6 +72,9 @@ export class DashboardComponent implements OnInit {
       {name: 'Instagram', code: 'IG'},
       {name: 'Linkedin', code: 'LKD'},    
     ];
+
+ 
+    
   } 
 
   next() {
@@ -70,6 +96,8 @@ export class DashboardComponent implements OnInit {
   isFirstPage(): boolean {
       return this.customers ? this.first === 0 : true;
   }
+
+
 
   
 }
