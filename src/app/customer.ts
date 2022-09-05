@@ -6,7 +6,7 @@ export interface Customer {
     nationality?: string;
     company?: string;
     designation?: string;
-    workexperience?: string;
+    workexperience?: number;
     cv?: string;
     datasource?: string;
 }
