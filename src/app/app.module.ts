@@ -9,7 +9,7 @@ import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {SplitterModule} from 'primeng/splitter';
 import {DividerModule} from 'primeng/divider';
@@ -20,9 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
 import {FileUploadModule} from 'primeng/fileupload';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DropdownModule} from 'primeng/dropdown';
-
 import {SidebarModule} from 'primeng/sidebar';
-
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [			
@@ -46,10 +47,13 @@ import {SidebarModule} from 'primeng/sidebar';
     FileUploadModule,
     BrowserAnimationsModule,
     DropdownModule,
-    SidebarModule
+    SidebarModule,
+    ReactiveFormsModule,
+    ConfirmDialogModule,
+    DialogModule
 
   ],
-  providers: [CustomerService],
+  providers: [CustomerService, ConfirmationService],
   bootstrap: [AppComponent],
   
 })

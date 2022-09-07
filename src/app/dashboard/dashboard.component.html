@@ -1,38 +1,52 @@
 <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
 
+<!--for the update tab dialog-->
+<p-dialog header="Update Message" [(visible)]="displayDialog" [transitionOptions]="'0.2s'" [modal] = "true">
+   The page has been edited. Have a great day. 
+</p-dialog>
+
+<!-- for the confirmation message when quitting -->
+<p-confirmDialog header="Logout Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+
 <p-sidebar [(visible)]="displayInsert">
   
   <h5>Lead Information</h5>
-  <form novalidate>
+  <form [formGroup]="profileForm" novalidate>
     <div class="p-fluid">
       <div class="field">
         <label for="firstname">First Name</label>
-        <input pInputText id="firstname" type="text" placeholder="Juan" />
+        <input pInputText id="firstname" type="text" formControlName="firstname"  placeholder="Juan" required/>
       </div>
 
       <div class="field">
         <label for="lastname">Last Name</label>
-        <input pInputText id="lastname" type="text" placeholder="Dela Cruz" />
+        <input pInputText id="lastname" type="text" formControlName="lastname" placeholder="Dela Cruz" required/>
       </div>
 
       <div class="field">
         <label for="country">Country</label>
-        <input pInputText id="country" type="text" placeholder="Philippines" />
+        <input pInputText id="country" type="text" formControlName="country" placeholder="Philippines" required/>
       </div>
 
       <div class="field">
         <label for="nationality">Nationality</label>
-        <input pInputText id="nationality" type="text" placeholder="Filipino" />
+        <input pInputText id="nationality" type="text" formControlName="nationality" placeholder="Filipino" required/>
       </div>
 
       <div class="field">
         <label for="company">Company</label>
-        <input pInputText id="company" type="text" placeholder="Titus Global-Tech" />
+        <input pInputText id="company" type="text" formControlName="company" placeholder="Titus Global-Tech" required/>
       </div>
 
       <div class="field">
         <label for="designation">Designation</label>
-        <input pInputText id="designation" type="text" placeholder="CEO" />
+        <input pInputText id="designation" type="text" formControlName="designation" placeholder="CEO" required/>
+      </div>
+
+      <div class="field">
+        <label for="workexperience">Work Experience</label>
+        <input pInputText id="workexperience" type="number" formControlName="workexperience" placeholder="1" required/>
       </div>
 
       <div class="field">
@@ -44,19 +58,81 @@
 
       <div class="field">
         <label for="datasource">Data Source</label>
-        <p-dropdown [options]="socials" [(ngModel)]="selectedSocials" optionLabel="name"></p-dropdown>
+        <p-dropdown [options]="social" [(ngModel)]="socialsNG" [ngModelOptions]="{ standalone: true }" optionLabel="name" optionValue="name"></p-dropdown>
       </div>
 
       <div btn-group>
-        <button pButton pRipple type="button" label="Insert" style="width: 50%" class="p-button-rounded"></button>
-        <button pButton pRipple type="button" label="Clear" style="width: 50%"
+        <button pButton pRipple type="button" (click)="addRecord()" label="Insert" style="width: 50%" class="p-button-rounded"></button>
+        <button pButton pRipple type="button" (click)="reset()" label="Clear" style="width: 50%"
           class="p-button-rounded p-button-danger"></button>
       </div>
     </div>
 
 
   </form>
+
+  <pre>{{profileForm.value | json }}</pre>
 </p-sidebar>
+
+<p-sidebar [(visible)]="displayUpdate" *ngIf="customer">
+  
+  <h5>Lead Information</h5>
+  <form [formGroup]="profileForm" novalidate>
+    <div class="p-fluid">
+      <div class="field">
+        <label for="firstname">First Name</label>
+        <input pInputText id="firstname" type="text" [(ngModel)]="customer.firstname" [ngModelOptions]="{standalone: true}" placeholder="Juan" required/>
+      </div>
+
+      <div class="field">
+        <label for="lastname">Last Name</label>
+        <input pInputText id="lastname" type="text" [(ngModel)]="customer.lastname" [ngModelOptions]="{standalone: true}" placeholder="Dela Cruz" required/>
+      </div>
+
+      <div class="field">
+        <label for="country">Country</label>
+        <input pInputText id="country" type="text" [(ngModel)]="customer.country" [ngModelOptions]="{standalone: true}" placeholder="Philippines" required/>
+      </div>
+
+      <div class="field">
+        <label for="nationality">Nationality</label>
+        <input pInputText id="nationality" type="text" [(ngModel)]="customer.nationality" [ngModelOptions]="{standalone: true}"  placeholder="Filipino" required/>
+      </div>
+
+      <div class="field">
+        <label for="company">Company</label>
+        <input pInputText id="company" type="text" [(ngModel)]="customer.company" [ngModelOptions]="{standalone: true}" placeholder="Titus Global-Tech" required/>
+      </div>
+
+      <div class="field">
+        <label for="designation">Designation</label>
+        <input pInputText id="designation" type="text" [(ngModel)]="customer.designation" [ngModelOptions]="{standalone: true}" placeholder="CEO" required/>
+      </div>
+
+      <div class="field">
+        <label for="workexperience">Work Experience</label>
+        <input pInputText id="workexperience" type="number" [(ngModel)]="customer.workexperience"  [ngModelOptions]="{standalone: true}" placeholder="1" required/>
+      </div>
+
+      <div class="field">
+        <label for="cv">CV</label>
+        <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" [auto]="true"
+          chooseLabel="Upload File" id="cv"></p-fileUpload>
+
+      </div>
+
+      <div class="field">
+        <label for="datasource">Data Source</label>
+        <p-dropdown [options]="social" [(ngModel)]="customer.datasource" [ngModelOptions]="{ standalone: true }" optionLabel="name" optionValue="name"></p-dropdown>
+      </div>
+
+      <div btn-group>
+        <button pButton pRipple type="button" (click)="close()" label="Clear" style="width: 100%" class="p-button-rounded p-button-danger"></button>
+      </div>
+    </div>
+
+    </form>
+  </p-sidebar>
 
 <div class="pl-3 pt-2 ">
   <br />
@@ -77,7 +153,6 @@
       <p>S</p>
       <br />
       <br />
-      <br />
       <p>G</p>
       <br />
       <p>T</p>
@@ -86,16 +161,20 @@
     <!-------------------------------------------------->
 
     <div class="card">
-      <h5>Duplicate List</h5>
+      <h5>Hello, {{username | titlecase}} </h5>
+
       <p-table [value]="customers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [rowsPerPageOptions]="[10, 25, 50]">
         <ng-template pTemplate="header">
+          
           <tr>
+            <th></th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Country</th>
             <th>Nationality</th>
+            <th>Company</th>
             <th>Designation</th>
             <th>Work Experience</th>
             <th>CV</th>
@@ -104,13 +183,15 @@
         </ng-template>
         <ng-template pTemplate="body" let-customer>
           <tr>
+            <td> <p-button pRipple type="button" label="Edit" icon="pi pi-user pb-1" (onClick)="updateUser(customer.lastname)" class="p-button-rounded p-button-info"></p-button></td>
             <td>{{customer.firstname}}</td>
             <td>{{customer.lastname}}</td>
             <td>{{customer.country}}</td>
             <td>{{customer.nationality }}</td>
+            <td>{{customer.company}}</td>
             <td>{{customer.designation}}</td>
             <td>{{customer.workexperience}}</td>
-            <td><a routerLink="/dashboard" class="cv">View</a></td>
+            <td><a href="https://drive.google.com/file/d/17guWeTQCn68kH3pG_aC89QzcNzU0p9Uj/view?usp=sharing" target = "_blank" class="cv">View</a></td>
             <td>{{customer.datasource}}</td>
           </tr>
         </ng-template>
