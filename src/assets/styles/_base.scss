@@ -9,6 +9,8 @@
 
 body {
     font-family: 'Michroma', sans-serif;
+    background-color: #F9FEFF;
+    
 }
 
 h5, .h5 {
@@ -32,9 +34,51 @@ width: 100%;
 }
 
 .p-divider {
-    background-color: #196CB9;
+    background-color: #3B82F6;
 }
 
 .cv {
     color: blue;
 }
+
+.p-inputtext {
+    color: #050505;
+    transition: background-color #050505;
+}
+
+.p-float-label {
+    
+    .label {
+        color: black;
+        font-weight: bold;
+    }
+}
+
+.p-button-rounded {
+    .p-button-info {
+        size: 10rem;
+    }
+}
+    
+.p-tabmenu-nav {
+    background-color: #3B82F6 !important;
+}
+
+.p-tabmenuitem {
+    background-color: #3B82F6!important;
+}
+.p-menuitem-link {
+    background-color: #3B82F6 !important;
+}
+.p-menuitem-text {
+    color: white !important;
+    font-size: 120%;
+    
+}
+.p-menuitem-icon {
+   color: white !important;
+}
+
+
+
+
